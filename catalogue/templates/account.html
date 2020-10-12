@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Circulation Record</h1>
+
+    <hr>
+    <table class="table">
+        <tr>
+            <th style="width:100px;">Barcode</th>
+            <th style="width:300px;">Title</th>
+            <th style="width:100px;">Due Date</th>
+            <th style="width:150px;text-align:center;">Renewal<br> (Max: 5 times)</th>
+            <th></th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{item.barcode}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.duedate}}</td>
+            <td style="text-align:center;">{{item.renewal}}</td>
+            <td>
+                <form action="/renew_books">
+                    <input type="hidden" name="barcode" value="{{item.barcode}}">
+                    <button type="submit" class="btn btn-secondary">Renew</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock content %}

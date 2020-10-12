@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library -- Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .container {
+            max-width: 920px;
+        }
+        table {
+            margin-bottom: 20px;
+            max-width: 900px;
+        }
+        .itemtable {
+            border-collapse: separate;
+        }
+        .itemtable, .itemtable th, .itemtable td {
+            border: 1px solid;
+        }
+        .birecord th{
+            width: 110px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Toku-Mei Library</h1>
+    </div>
+    <div class="container">
+        <h5>Find a Book</h5>
+        <form action="/search" method="GET">
+            {% csrf_token %}
+            <select name="search_option">
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="subject">Subject</option>
+                <option value="isbn">ISBN</option>
+                <option value="any_words">Any Words</option>
+            </select>
+            <input type="text" name="search_words" required>
+            <button type="submit">Submit</button>
+        </form>
+        {% load static %}
+        <img src="{% static 'sugishita001.jpg' %}">
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container record">
+    <table class="container-fluid birecord">
+        <tr>
+            <th>Author</th>
+            <td>{{book.author}}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td><h2>{{book.title}}</h2></td>
+        </tr>
+        <tr>
+            <th>Imprint</th>
+            <td>{{book.publisher}}, {{book.year}}</td>
+        </tr>
+        <tr>
+            <th>Edition</th>
+            <td>{{book.edition}}</td>
+        </tr>
+    </table>
+    <table class="container-fluid itemtable">
+        <tr>
+            <th>Location</th>
+            <th>Call Number #</th>
+            <th>Status</th>
+        </tr>
+        {% for i in items %}
+        <tr>
+            <td>{{i.location}}</td>
+            <td>{{i.callno}}</td>
+            <td>{{i.show_status}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <table class="container-fluid birecord">
+        <tr>
+            <th>Format</th>
+            <td>{{book.format}}</td>
+        </tr>
+        <tr>
+            <th>Subject</th>
+            {% for s in subjects %}
+            <td><a href="/searchBySubject/{{s}}">{{s}}</a></td>
+            </tr>
+            <tr><th></th>
+                {% endfor %}
+        </tr>
+        <tr>
+            <th>Identifier</th>
+            {% for i in isbn %}
+            <td>{{i}}</td>
+            </tr>
+            <tr><th></th>
+                {% endfor %}
+        </tr>
+        <tr>
+            <th>Language</th>
+            <td>{{book.language}}</td>
+        </tr>
+    </table>
+</div>
+{% endblock content %}
