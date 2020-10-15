@@ -5,6 +5,7 @@
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
+
         .container {
             max-width: 920px;
         }
@@ -21,10 +22,20 @@
         .birecord th{
             width: 110px;
         }
-
-        ul li {
-            float:left;
+        .form-login {
+            width: 600px;
+            padding: 70px;
         }
+
+     ul li {
+        margin-left: 5px;
+     }
+
+     .rs_counter {
+        margin-right: 20px;
+     }
+
+
     </style>
 </head>
 <body>
@@ -54,7 +65,7 @@
             <ul class="nav navbar-nav flex-row">
                 {% if user.is_authenticated %}
                 <li>
-                    <a href="/viewrecord" class="btn btn-primary">View Circulation Record</a>
+                    <a href="/viewrecord" class="btn btn-info">View Circulation Record</a>
                 </li>
                 <li>
                     <form action="/logout" method="">
@@ -64,7 +75,7 @@
                 {% else %}
                 <li>
                     <form action="/login" method="">
-                        <button type="submit">Login</button>
+                        <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </li>
                 {% endif %}

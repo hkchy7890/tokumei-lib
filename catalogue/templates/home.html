@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
         .container {
-            max-width: 920px;
+            max-width: 720px;
         }
         table {
             margin-bottom: 20px;
@@ -35,15 +35,21 @@
         .birecord th{
             width: 110px;
         }
-
+        .homepage {
+            margin-top: 30px;
+        }
+        .homepagebar li {
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Welcome to Toku-Mei Library</h1>
+    <div class="container homepage">
+        <h1>Toku-Mei Library Catalogue</h1>
+        <hr>
     </div>
-    <div class="container">
+    <div class="container homepage">
         <h5>Find a Book</h5>
         <form action="/search" method="GET">
             {% csrf_token %}
@@ -57,8 +63,28 @@
             <input type="text" name="search_words" required>
             <button type="submit">Submit</button>
         </form>
+        <p></p>
+        <p style="margin-left: 200px;"><b>OR</b></p>
+        <p></p>
+        {% if user.is_authenticated %}
+        <ul class="nav navbar-nav flex-row homepagebar">
+            <li>
+                <a href="/viewrecord" class="btn btn-info">View Circulation Record</a>
+            </li>
+            <li>
+                <form action="/logout" method="">
+                    <button type="submit" class="btn btn-warning">Logout</button>
+                </form>
+            </li>
+        </ul>
+        {% else %}
+        <h5>Check Your Borrowing Record here <a href="/login" class="btn btn-primary">Login</a></h5>
+        {% endif %}
+        </form>
         {% load static %}
-        <img src="{% static 'sugishita001.jpg' %}">
+    </div>
+    <div class="container homepage">
+         <img src="{% static 'sugishita001.jpg' %}" style="width:65%;">
     </div>
 
 

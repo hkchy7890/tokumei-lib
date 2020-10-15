@@ -51,6 +51,8 @@ class Bookitem(models.Model):
     renewal = models.IntegerField(default=0)
     created_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now_add=True)
+    message = models.CharField(max_length=100, blank=True, null=True)
+    holdlist = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return "{} - {}".format(self.title, self.callno)
@@ -60,3 +62,13 @@ class Bookitem(models.Model):
             return self.duedate
         else:
             return self.status
+
+
+class CircAccount(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    activated = models.BooleanField(default=True)
+    fine = models.IntegerField(blank=True, null=True, default=0)
+    hold = models.IntegerField(blank=True, null=True, default=0)
+
+    def __str__(self):
+        return str(self.user)

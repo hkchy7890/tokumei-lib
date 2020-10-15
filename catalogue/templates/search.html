@@ -3,8 +3,9 @@
 <div class="container">
     <h2>Search for : <b>{{keyword}}</b></h2>
     <h4>Number of Results: <b>{{num}}</b></h4>
+    <hr>
     {% for bk in books %}
-    <p><a href="/record/{{bk.id}}">{{bk}}</a></p>
+    <p><b class="rs_counter">{{forloop.counter}}.</b> <a href="/record/{{bk.id}}">{{bk}}</a></p>
     {% endfor %}
 
 </div>
