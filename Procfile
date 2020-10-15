@@ -1,1 +1,1 @@
-web: gununicorn myphotos.wsgi
+web: gunicorn library.wsgi
