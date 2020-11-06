@@ -2,21 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Library -- Home Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-</head>
-<body>
-
-</body>
-</html>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock title %}</title>
+    <title>Tokumei Library</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
         .container {
@@ -44,7 +30,15 @@
     </style>
 </head>
 <body>
-
+<div class="alert alert-info alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            このサイトは昔香港である大学図書館の伝統的な図書検索画面をもとにして、作成されました。内容は英語のみですが、日本語で説明をいたします。
+            <a href="/explain">説明へ</a>
+        </div>
+<div class="alert alert-info alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            "Java"や"Italy"を検索してみてください。
+        </div>
     <div class="container homepage">
         <h1>Toku-Mei Library Catalogue</h1>
         <hr>
@@ -58,7 +52,6 @@
                 <option value="author">Author</option>
                 <option value="subject">Subject</option>
                 <option value="isbn">ISBN</option>
-                <option value="any_words">Any Words</option>
             </select>
             <input type="text" name="search_words" required>
             <button type="submit">Submit</button>

@@ -42,10 +42,10 @@ def view_record(request):
     num = len(items)
 
     for item in items:
-        item.message = " "
+        item.display_message = " "
         n = datetime.date.today() - item.duedate
         if (n.days) > 0:
-            item.message = "Overdue {} day(s)".format(n.days)
+            item.display_message = "Overdue {} day(s)".format(n.days)
 
     context = {
         'items':items,
@@ -140,19 +140,19 @@ def searchBar(request):
 
     if (search_option=="title"):
         print("title search conducted")
-        books = Booktitle.objects.filter(title__contains=(search_words))
+        books = Booktitle.objects.filter(title__icontains=search_words)
     if (search_option=="author"):
         print("author search conducted")
-        books = Booktitle.objects.filter(author__contains=search_words)
+        books = Booktitle.objects.filter(author__icontains=search_words)
     if (search_option=="subject"):
         print("subject search conducted")
-        books = Booktitle.objects.filter(subjects__contains=search_words)
+        books = Booktitle.objects.filter(subjects__icontains=search_words)
     if (search_option=="isbn"):
         print("isbn search conducted")
-        books = Booktitle.objects.filter(isbn__contains=search_words)
-    if (search_option=="any_words"):
-        print("any_words search conducted")
-        books = Booktitle.objects.filter(series__contains=search_words)
+        books = Booktitle.objects.filter(isbn__icontains=search_words)
+#    if (search_option=="any_words"):
+#        print("any_words search conducted")
+#        books = Booktitle.objects.filter(series__icontains=search_words)
 
 
     num = len(books)
@@ -165,3 +165,7 @@ def searchBar(request):
         for bk in books:
             return book_record(request, bk.id)
     return render(request, 'search.html', context)
+
+
+def explain(request):
+    return render(request, 'explain.html')

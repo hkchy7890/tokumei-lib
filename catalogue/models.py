@@ -22,10 +22,10 @@ class Booktitle(models.Model):
 
 class Bookitem(models.Model):
     LOCATION = (
-        ('1/F Collection', '1/F Collection'),
-        ('2/F Collection', '2/F Collection'),
-        ('3/F Collection', '3/F Collection'),
-        ('1/F Reference Section', '1/F Reference Section')
+        ('1/F', '1/F'),
+        ('2/F', '2/F'),
+        ('3/F', '3/F'),
+        ('1/F Reference', '1/F Reference')
     )
     STATUS = (
         ('available', 'available'),
@@ -39,8 +39,9 @@ class Bookitem(models.Model):
         ('withdrawn', 'withdrawn')
     )
 
-    title = models.ForeignKey(Booktitle, on_delete=models.CASCADE)
     barcode = models.CharField(max_length=10, unique=True)
+    title = models.ForeignKey(Booktitle, on_delete=models.CASCADE)
+    material_type = models.CharField(max_length=10)
     location = models.CharField(max_length=25, choices=LOCATION)
     callno = models.CharField(max_length=100)
     status = models.CharField(max_length=25, choices=STATUS)
@@ -49,10 +50,11 @@ class Bookitem(models.Model):
     previous_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="user_previous_use")
     total_checkedout = models.IntegerField(default=0)
     renewal = models.IntegerField(default=0)
+    display_message = models.CharField(max_length=100, blank=True, null=True)
+    holdlist = models.CharField(max_length=200, blank=True, null=True)
     created_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now_add=True)
-    message = models.CharField(max_length=100, blank=True, null=True)
-    holdlist = models.CharField(max_length=200, blank=True, null=True)
+
 
     def __str__(self):
         return "{} - {}".format(self.title, self.callno)
