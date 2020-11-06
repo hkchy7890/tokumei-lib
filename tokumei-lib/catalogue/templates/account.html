@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{message}}
+        </div>
+    {% endfor %}
+<div class="container">
+    <h1>Borrowing Record</h1>
+
+    <hr>
+    <div class="container">
+        <p>Name: <b>{{user_acc.user}}</b></p>
+        <p>Number of borrowing books: <b>{{num}}</b> (maximum: 10)</p>
+        <p>Fine: ￥
+            {% if user_acc.fine == 0 %}
+            <b>{{user_acc.fine}}</b></p>
+            {% else %}
+            <b style="color:red;">{{user_acc.fine}}</b></p>
+            {% endif %}
+        <p></p>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th style="width:100px;">Barcode</th>
+            <th style="width:300px;">Title</th>
+            <th style="width:100px;">Due Date</th>
+            <th style="width:150px;text-align:center;">Renewal<br> (Max: 5 times)</th>
+            <th></th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{item.barcode}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.duedate}}</td>
+            <td style="text-align:center;">{{item.renewal}}</td>
+            <td>
+                <form action="/renew_books">
+                    <input type="hidden" name="barcode" value="{{item.barcode}}">
+                    {% if item.renewal >= 5 %}
+                    <button type="submit" class="btn btn-secondary" disabled>Renew</button>
+                    <span style="color:red;">{{item.display_message}}</span><br>
+                    <span style="color:red;">You have reached maximum renewals</span>
+                    {% else %}
+                    <button type="submit" class="btn btn-primary">Renew</button>
+                    <span style="color:red;">{{item.display_message}}</span>
+                    {% endif %}
+
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock content %}

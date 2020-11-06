@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <h1>Features / 特徴</h1>
+    <h3>1. 検索</h3>
+    <h5>a. タイトル、著者、主題、ISBNで資料を検索</h5>
+    <img class="img-fluid" src="{% static 'libcatalogue001.png' %}">
+    <h5>b. </h5>
+    <p>i. もし検索結果は二つ以上なら、リストを展示されている　（例：　Javaを主題で検索）</p>
+    <img class="img-fluid" src="{% static 'libcatalogue002.png' %}">
+    <p>ii. もし検査か結果は一つのみなら、その一つ資料の詳細へ移動する　（例：　Italyを主題で検索）</p>
+    <img class="img-fluid" src="{% static 'libcatalogue003.png' %}">
+    <hr>
+    <hr>
+    <h3>2. アカウント</h3>
+    <p>name: "user01", password: "12qw90op"ログインを試してください</p>
+    <p>a. 返却期限が過ぎた場合、延長ボタン(renew button)を押したとたん、罰金計算されたている。　1日1円罰金となる。</p>
+    <p>b. 延長の計算は、延長した日から14日計算する。</p>
+    <p>c. 返却期限10日前、延長できない。 (エラーメッセージ発生)</p>
+    <p>d. 延長は五回まで。</p>
+    <img class="img-fluid" src="{% static 'libcatalogue004.png' %}">
+</div>
+<div class="container">
+    <hr>
+    <b>***このサイトの図書資料データは香港大学図書館のを基づいて編集されています。</b>
+    <hr>
+</div>
+{% endblock content %}

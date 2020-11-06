@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tokumei Library</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .container {
+            max-width: 720px;
+        }
+        table {
+            margin-bottom: 20px;
+            max-width: 900px;
+        }
+        .itemtable {
+            border-collapse: separate;
+        }
+        .itemtable, .itemtable th, .itemtable td {
+            border: 1px solid;
+        }
+        .birecord th{
+            width: 110px;
+        }
+        .homepage {
+            margin-top: 30px;
+        }
+        .homepagebar li {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="alert alert-info alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            このサイトは昔香港である大学図書館の伝統的な図書検索画面をもとにして、作成されました。内容は英語のみですが、日本語で説明をいたします。
+            <a href="/explain">説明へ</a>
+        </div>
+<div class="alert alert-info alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            "Java"や"Italy"を検索してみてください。
+        </div>
+    <div class="container homepage">
+        <h1>Toku-Mei Library Catalogue</h1>
+        <hr>
+    </div>
+    <div class="container homepage">
+        <h5>Find a Book</h5>
+        <form action="/search" method="GET">
+            {% csrf_token %}
+            <select name="search_option">
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="subject">Subject</option>
+                <option value="isbn">ISBN</option>
+            </select>
+            <input type="text" name="search_words" required>
+            <button type="submit">Submit</button>
+        </form>
+        <p></p>
+        <p style="margin-left: 200px;"><b>OR</b></p>
+        <p></p>
+        {% if user.is_authenticated %}
+        <ul class="nav navbar-nav flex-row homepagebar">
+            <li>
+                <a href="/viewrecord" class="btn btn-info">View Circulation Record</a>
+            </li>
+            <li>
+                <form action="/logout" method="">
+                    <button type="submit" class="btn btn-warning">Logout</button>
+                </form>
+            </li>
+        </ul>
+        {% else %}
+        <h5>Check Your Borrowing Record here <a href="/login" class="btn btn-primary">Login</a></h5>
+        {% endif %}
+        </form>
+        {% load static %}
+    </div>
+    <div class="container homepage">
+         <img src="{% static 'sugishita001.jpg' %}" style="width:65%;">
+    </div>
+
+
+</body>
+</html>
